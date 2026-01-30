@@ -1,0 +1,84 @@
+@page
+@model events_razor_pages.Pages_Event.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Event[0].Naziv)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Event[0].Lokacija)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Event[0].DatumPocetka)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Event[0].DatumZavrsetka)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Event[0].BrojPolaznika)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Event[0].Cijena)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Event[0].Opis)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Event[0].Aktivan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Event[0].VrstaId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Event) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naziv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lokacija)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatumPocetka)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatumZavrsetka)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BrojPolaznika)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cijena)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Opis)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Aktivan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VrstaId)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
