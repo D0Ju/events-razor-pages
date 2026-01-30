@@ -13,4 +13,6 @@ using EventsRazorApp.Models;
         }
 
         public DbSet<EventsRazorApp.Models.Event> Event { get; set; } = default!;
+
+public DbSet<EventsRazorApp.Models.EventType> EventType { get; set; } = default!;
     }
