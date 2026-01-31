@@ -61,6 +61,8 @@ namespace events_razor_pages.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("VrstaId");
+
                     b.ToTable("Event");
                 });
 
@@ -86,6 +88,17 @@ namespace events_razor_pages.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("EventType");
+                });
+
+            modelBuilder.Entity("EventsRazorApp.Models.Event", b =>
+                {
+                    b.HasOne("EventsRazorApp.Models.EventType", "EventType")
+                        .WithMany()
+                        .HasForeignKey("VrstaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("EventType");
                 });
 #pragma warning restore 612, 618
         }

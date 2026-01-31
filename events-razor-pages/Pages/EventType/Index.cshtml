@@ -2,15 +2,15 @@
 @model events_razor_pages.Pages_EventType.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Vrste događaja";
 }
 
-<h1>Index</h1>
+<h1><i class="bi bi-list"></i> Vrste događaja</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create" class="btn btn-primary mb-3"><i class="bi bi-plus-circle"></i> Nova vrsta</a>
 </p>
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
             <th>

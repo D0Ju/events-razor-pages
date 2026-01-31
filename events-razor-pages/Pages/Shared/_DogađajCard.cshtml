@@ -1,0 +1,35 @@
+@model EventsRazorApp.Models.Event
+
+<div class="col-md-6 col-lg-4 mb-4">
+    <div class="card h-100 shadow-sm event-card">
+        <div class="card-header bg-primary text-white">
+            <h5 class="card-title mb-0">@Model.Naziv</h5>
+        </div>
+        <div class="card-body">
+            <p class="card-text">
+                <strong>Lokacija:</strong> <i class="bi bi-geo-alt"></i> @Model.Lokacija
+            </p>
+            <p class="card-text">
+                <strong>Početak:</strong> @Model.DatumPocetka?.ToString("dd.MM.yyyy")
+            </p>
+            <p class="card-text">
+                <strong>Završetak:</strong> @Model.DatumZavrsetka?.ToString("dd.MM.yyyy")
+            </p>
+            <p class="card-text">
+                <strong>Polaznici:</strong> @Model.BrojPolaznika
+            </p>
+            <p class="card-text">
+                <strong>Cijena:</strong> <span class="badge bg-success">@Model.Cijena.ToString("N2") kn</span>
+            </p>
+            @if (!string.IsNullOrEmpty(Model.Opis))
+            {
+                <p class="card-text text-muted small">@Model.Opis</p>
+            }
+        </div>
+        <div class="card-footer bg-light">
+            <a asp-page="Details" asp-route-id="@Model.Id" class="btn btn-sm btn-primary">Detalji</a>
+            <a asp-page="Edit" asp-route-id="@Model.Id" class="btn btn-sm btn-warning">Uredi</a>
+            <a asp-page="Delete" asp-route-id="@Model.Id" class="btn btn-sm btn-danger">Obriši</a>
+        </div>
+    </div>
+</div>

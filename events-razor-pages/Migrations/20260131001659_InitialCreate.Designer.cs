@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace events_razor_pages.Migrations
 {
     [DbContext(typeof(EventDbContext))]
-    [Migration("20260130185822_InitialCreate")]
+    [Migration("20260131001659_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -64,7 +64,44 @@ namespace events_razor_pages.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("VrstaId");
+
                     b.ToTable("Event");
+                });
+
+            modelBuilder.Entity("EventsRazorApp.Models.EventType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("MinimalnoPolaznika")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Naziv")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Opis")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EventType");
+                });
+
+            modelBuilder.Entity("EventsRazorApp.Models.Event", b =>
+                {
+                    b.HasOne("EventsRazorApp.Models.EventType", "EventType")
+                        .WithMany()
+                        .HasForeignKey("VrstaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("EventType");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,0 +1,38 @@
+@page
+@model events_razor_pages.Pages_Event.SortedByDateModel
+@{
+    ViewData["Title"] = "Događaji sortirani po datumu";
+}
+
+<div class="container mt-5">
+    <h1>Događaji - Sortirani po datumu</h1>
+    
+    <div class="btn-group mb-4" role="group">
+        <a asp-page="SortedByDate" asp-route-sortOrder="asc" class="btn btn-outline-primary @(Model.SortOrder == "asc" ? "active" : "")">
+            Najstariji prvi
+        </a>
+        <a asp-page="SortedByDate" asp-route-sortOrder="desc" class="btn btn-outline-primary @(Model.SortOrder == "desc" ? "active" : "")">
+            Najnoviji prvi
+        </a>
+    </div>
+
+    @if (Model.Events.Count() > 0)
+    {
+        <div class="row">
+            @foreach (var dogadaj in Model.Events)
+            {
+                <partial name="_DogađajCard" model="dogadaj" />
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info" role="alert">
+            Nema dostupnih događaja.
+        </div>
+    }
+
+    <div class="mt-3">
+        <a asp-page="Index" class="btn btn-secondary">Nazad</a>
+    </div>
+</div>

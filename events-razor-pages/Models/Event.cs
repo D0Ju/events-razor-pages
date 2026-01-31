@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace EventsRazorApp.Models
 {
@@ -21,5 +23,10 @@ namespace EventsRazorApp.Models
         public string Opis { get; set; }
         public bool Aktivan { get; set; }
         public int VrstaId { get; set; }
+
+        // Navigation property
+        [ForeignKey("VrstaId")]
+        [BindNever]
+        public EventType? EventType { get; set; }
     }
 }

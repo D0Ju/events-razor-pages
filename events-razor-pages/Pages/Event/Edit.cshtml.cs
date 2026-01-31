@@ -22,6 +22,8 @@ namespace events_razor_pages.Pages_Event
         [BindProperty]
         public Event Event { get; set; } = default!;
 
+        public SelectList VrstaList { get; set; }
+
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -35,6 +37,14 @@ namespace events_razor_pages.Pages_Event
                 return NotFound();
             }
             Event = ev;
+
+            VrstaList = new SelectList(
+                await _context.EventType.ToListAsync(),
+                "Id",
+                "Naziv",
+                Event.VrstaId
+            );
+
             return Page();
         }
 

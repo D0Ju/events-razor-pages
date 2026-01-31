@@ -5,14 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using EventsRazorApp.Models;
 
-    public class EventDbContext : DbContext
+public class EventDbContext : DbContext
+{
+    public EventDbContext(DbContextOptions<EventDbContext> options)
+        : base(options)
     {
-        public EventDbContext (DbContextOptions<EventDbContext> options)
-            : base(options)
-        {
-        }
-
-        public DbSet<EventsRazorApp.Models.Event> Event { get; set; } = default!;
-
-public DbSet<EventsRazorApp.Models.EventType> EventType { get; set; } = default!;
     }
+
+    public DbSet<EventsRazorApp.Models.Event> Event { get; set; } = default!;
+    public DbSet<EventsRazorApp.Models.EventType> EventType { get; set; } = default!;
+}

@@ -22,7 +22,7 @@ namespace events_razor_pages.Pages_Event
 
         public async Task OnGetAsync()
         {
-            Event = await _context.Event.ToListAsync();
+            Event = await _context.Event.Include(e => e.EventType).ToListAsync();
         }
     }
 }

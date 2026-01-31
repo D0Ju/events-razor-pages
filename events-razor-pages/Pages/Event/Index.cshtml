@@ -2,15 +2,15 @@
 @model events_razor_pages.Pages_Event.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Svi događaji";
 }
 
-<h1>Index</h1>
+<h1><i class="bi bi-calendar-event"></i> Svi događaji</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create" class="btn btn-primary mb-3"><i class="bi bi-plus-circle"></i> Kreiraj novi događaj</a>
 </p>
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
             <th>
@@ -38,7 +38,7 @@
                 @Html.DisplayNameFor(model => model.Event[0].Aktivan)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Event[0].VrstaId)
+                Vrsta događaja
             </th>
             <th></th>
         </tr>
@@ -71,7 +71,7 @@
                 @Html.DisplayFor(modelItem => item.Aktivan)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.VrstaId)
+                @Html.DisplayFor(modelItem => item.EventType.Naziv)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
